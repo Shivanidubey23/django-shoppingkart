@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Category List</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>S. Number</th>
+        <th>Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for category in categories %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ category.name }}</td>
+          <td>
+            <a href="{% url 'category_show' category.pk %}" class="btn btn-info">Show</a>
+            <a href="{% url 'category_update' category.pk %}" class="btn btn-warning">Edit</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3">No categories available.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'category_create' %}" class="btn btn-primary">Create Category</a>
+{% endblock %}
